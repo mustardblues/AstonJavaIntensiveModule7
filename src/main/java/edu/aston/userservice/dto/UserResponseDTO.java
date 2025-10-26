@@ -3,13 +3,14 @@ package edu.aston.userservice.dto;
 import edu.aston.userservice.entity.User;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class UserResponseDTO {
-    private final Integer id;
-    private final String name;
-    private final String email;
-    private final Integer age;
-    private final LocalDateTime createdAt;
+    private Integer id;
+    private String name;
+    private String email;
+    private Integer age;
+    private LocalDateTime createdAt;
 
     public UserResponseDTO(final int id, final String name, final String email, final int age, final LocalDateTime createdAt) {
         this.id = id;
@@ -45,5 +46,36 @@ public class UserResponseDTO {
 
     public LocalDateTime getCreatedAt() {
         return this.createdAt;
+    }
+
+    public void setId(final Integer id) {
+        this.id = id;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
+    public void setAge(final Integer age) {
+        this.age = age;
+    }
+
+    public void setCreatedAt(final LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "UserResponseDTO{" +
+                "id=" + this.id +
+                ", name=" + this.name +
+                ", email=" + this.email +
+                ", age=" + this.age +
+                ", createdAt=" + this.createdAt +
+                "}";
     }
 }

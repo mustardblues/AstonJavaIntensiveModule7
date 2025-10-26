@@ -1,9 +1,11 @@
 package edu.aston.userservice.dto;
 
 public class UserRequestDTO {
-    private final String name;
-    private final String email;
-    private final Integer age;
+    private String name;
+    private String email;
+    private Integer age;
+
+    public UserRequestDTO() {}
 
     public UserRequestDTO(final String name, final String email, final int age) {
         this.name = name;
@@ -21,5 +23,17 @@ public class UserRequestDTO {
 
     public Integer getAge() {
         return this.age;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public void setEmail(final String email) {
+        this.email = email;
+    }
+
+    public void setAge(final Integer age) {
+        this.age = age;
     }
 }
