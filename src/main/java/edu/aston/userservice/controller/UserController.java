@@ -40,14 +40,9 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<?> readAll() {
-        try {
-            final List<UserResponseDTO> list = this.userService.findAll();
+        final List<UserResponseDTO> list = this.userService.findAll();
 
-            return ResponseEntity.ok(list);
-        }
-        catch(Exception exception) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
-        }
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")

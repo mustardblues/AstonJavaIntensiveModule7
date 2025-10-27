@@ -48,26 +48,6 @@ public class UserResponseDTO {
         return this.createdAt;
     }
 
-    public void setId(final Integer id) {
-        this.id = id;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
-    }
-
-    public void setAge(final Integer age) {
-        this.age = age;
-    }
-
-    public void setCreatedAt(final LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
     @Override
     public String toString() {
         return "UserResponseDTO{" +

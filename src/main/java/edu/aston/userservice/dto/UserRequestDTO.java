@@ -24,16 +24,4 @@ public class UserRequestDTO {
     public Integer getAge() {
         return this.age;
     }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
-    }
-
-    public void setAge(final Integer age) {
-        this.age = age;
-    }
 }
