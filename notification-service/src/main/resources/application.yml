@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: notification-service
+
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: manihov.azat@yandex.ru
+    password: ueozrviujwmmajkq
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+      mail.smtp.ssl.trust: smtp.yandex.ru
+
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: notification-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: edu.aston.event
+        value.deserializer: org.springframework.kafka.support.serializer.JsonDeserializer

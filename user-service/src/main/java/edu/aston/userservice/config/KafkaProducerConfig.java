@@ -1,6 +1,7 @@
 package edu.aston.userservice.config;
 
-import edu.aston.userservice.dto.UserEventDTO;
+import edu.aston.event.UserEvent;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
@@ -14,20 +15,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
-public class KafkaConfig {
+public class KafkaProducerConfig {
     @Bean
-    public ProducerFactory<String, UserEventDTO> producerFactory() {
-        Map<String, Object> configProps = new HashMap<>();
+    public ProducerFactory<String, UserEvent> producerFactory() {
+        Map<String, Object> config = new HashMap<>();
 
-        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        config.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
-        return new DefaultKafkaProducerFactory<>(configProps);
+        return new DefaultKafkaProducerFactory<>(config);
     }
 
     @Bean
-    public KafkaTemplate<String, UserEventDTO> kafkaTemplate(ProducerFactory<String, UserEventDTO> producerFactory) {
+    public KafkaTemplate<String, UserEvent> kafkaTemplate(ProducerFactory<String, UserEvent> producerFactory) {
         return new KafkaTemplate<>(producerFactory);
     }
 }

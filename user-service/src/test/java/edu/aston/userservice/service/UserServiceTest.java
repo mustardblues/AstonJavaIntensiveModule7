@@ -3,6 +3,7 @@ package edu.aston.userservice.service;
 import edu.aston.userservice.entity.User;
 import edu.aston.userservice.dto.UserRequestDTO;
 import edu.aston.userservice.dto.UserResponseDTO;
+import edu.aston.userservice.producer.UserEventProducer;
 import edu.aston.userservice.repository.UserRepository;
 
 import org.junit.jupiter.api.Test;
@@ -11,10 +12,13 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.mockito.Mock;
+
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.mockito.ArgumentMatchers.any;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;;
 
@@ -25,9 +29,12 @@ public class UserServiceTest {
     @Mock
     private UserRepository userRepository;
 
+    @Mock
+    private UserEventProducer userEventProducer;
+
     @BeforeEach
     void setup() {
-        this.userService = new UserServiceImpl(userRepository);
+        this.userService = new UserServiceImpl(userRepository, userEventProducer);
     }
 
     @Test
@@ -138,8 +145,11 @@ public class UserServiceTest {
 
     @Test
     void testDeleteById() throws Exception {
-        when(this.userRepository.existsById(1)).thenReturn(true);
-        when(this.userRepository.existsById(2)).thenReturn(false);
+        when(this.userRepository.findById(1)).thenReturn(
+                Optional.of(new User(1, "test", "test@email.com", 18)));
+        when(this.userRepository.findById(2)).thenReturn(Optional.empty());
+
+        doNothing().when(this.userEventProducer).sendEvent("DELETE", "test@email.com");
 
         assertTrue(this.userService.deleteById(1));
         assertFalse(this.userService.deleteById(2));

@@ -1,10 +1,12 @@
-package edu.aston.userservice.dto;
+package edu.aston.event;
 
-public class UserEventDTO {
+public class UserEvent {
     private String action;
     private String email;
 
-    public UserEventDTO(final String action, final String email) {
+    public UserEvent() {}
+
+    public UserEvent(final String action, final String email) {
         this.action = action;
         this.email = email;
     }

@@ -1,8 +1,8 @@
 package edu.aston.notificationservice.controller;
 
-import edu.aston.notificationservice.dto.UserEventDTO;
-import edu.aston.notificationservice.service.NotificationService;
+import edu.aston.event.UserEvent;
 
+import edu.aston.notificationservice.service.EmailNotificationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/application/notifications")
+@RequestMapping("/send")
 public class NotificationController {
-    private final NotificationService notificationService;
+    private final EmailNotificationService emailNotificationService;
 
-    public NotificationController(final NotificationService notificationService) {
-        this.notificationService = notificationService;
+    public NotificationController(final EmailNotificationService emailNotificationService) {
+        this.emailNotificationService = emailNotificationService;
     }
 
-    @PostMapping("/send")
-    public ResponseEntity<?> sendNotification(@RequestBody UserEventDTO userEventDTO) {
-        notificationService.handleEvent(userEventDTO.getOperation(), userEventDTO.getEmail());
+    @PostMapping
+    public ResponseEntity<?> sendNotification(@RequestBody final UserEvent userEventDTO) {
+        emailNotificationService.sendMessage(userEventDTO.getAction(), userEventDTO.getEmail());
         return ResponseEntity.ok().build();
     }
 }

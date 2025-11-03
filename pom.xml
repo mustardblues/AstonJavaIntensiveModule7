@@ -54,5 +54,6 @@
     <modules>
         <module>user-service</module>
         <module>notification-service</module>
+        <module>shared-module</module>
     </modules>
 </project>
