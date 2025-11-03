@@ -8,8 +8,8 @@ spring:
   mail:
     host: smtp.yandex.ru
     port: 465
-    username: manihov.azat@yandex.ru
-    password: ueozrviujwmmajkq
+    username: ${email}
+    password: ${password}
     properties:
       mail.smtp.auth: true
       mail.smtp.ssl.enable: true
