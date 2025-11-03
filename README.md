@@ -1,1 +1,1 @@
-![Coverage](misc/images/coverage.jpg)
+![Coverage](misc/images/coverage.png)
