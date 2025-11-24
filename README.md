@@ -1,3 +1,3 @@
-Видеоотчёт по модулю 7: https://youtu.be/MI-yf5nI9n8 .
+Видеоотчёт по модулю 8: https://www.youtube.com/watch?v=H1zBUik1wRY&feature=youtu.be .
 
 ![Coverage](misc/images/coverage.png)
